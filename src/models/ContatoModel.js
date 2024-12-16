@@ -66,6 +66,12 @@ Contato.buscaContatos = async function() {
    return contatos;
 }
 
+Contato.buscaContatosPorNome = async function(nome) {
+  if (typeof nome !== "string") return;
+  const contatos = await ContatoModel.find({ nome: new RegExp(nome, 'i') });
+  return contatos;
+}
+
 Contato.delete = async function(id) {
   if (typeof id !== "string") return;
    const contato = await ContatoModel.findOneAndDelete({ _id: id });
